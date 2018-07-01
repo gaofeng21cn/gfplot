@@ -16,10 +16,15 @@
 #' @import ggplot2 cowplot
 #' @export
 #' @examples
-#' clinical <- survival::Surv(t.rfs, e.rfs)
-#' color.cms <- c("#E69E00","#0070B0","#CA78A6", "#009C73")
-#' plot_KMCurve(clinical, labels, "GSE39582", color.cms)
 #'
+#'  library(survival)
+#'  library(survminer)
+#'  extrafont::loadfonts()
+#'  data(myeloma)
+#'  clin <- Surv(myeloma$time, myeloma$event)
+#'  labs <- factor(myeloma$molecular_group)
+#'  plot_KMCurve(clin, labs)
+
 plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = NULL,
                           font = "Arial", xlab = "Follow up", ylab = "Survival Probability",
                           title = NULL, legend.pos = "top", risk.table = T, palette = "nature",
