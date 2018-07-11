@@ -84,7 +84,9 @@ plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = 
   p <- survminer::ggsurvplot(surv, data = df, xlab = xlab, ylab = ylab,
                              palette = color, legend = legend.pos,
                              legend.labs = legend.labs, risk.table = risk.table, risk.table.title = element_blank(),
-                             risk.table.y.text = FALSE, ggtheme = theme(text = element_text(family = font), legend.title = element_blank()))
+                             risk.table.y.text = FALSE, ggtheme = theme(text = element_text(family = font),
+                                                                        title = element_text(family = font),
+                                                                        legend.title = element_blank()))
   p$plot <- p$plot + ggtitle(title)
 
   anno.text <- ifelse(survstats$p.value == 0,
@@ -117,7 +119,9 @@ plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = 
 
 
   if (risk.table) {
-    p$table <- p$table + theme(axis.title.y = element_blank())
+    p$table <- p$table + theme(text = element_text(family = font),
+                                title = element_text(family = font),
+                               axis.title.y = element_blank())
     pp <- plot_grid(plotlist = list(p$plot + theme(axis.title.x = element_blank()),
                                     p$table + labs(x = xlab)), labels = "", ncol = 1,
                     align = "v", rel_heights = c(2.5, 1))
