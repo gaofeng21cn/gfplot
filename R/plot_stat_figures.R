@@ -44,7 +44,7 @@ plot_barplot <- function() {
 #'  library(cowplot)
 #'  plot_cor(iris$Sepal.Length, iris$Sepal.Width)
 
-plot_cor <- function(x, y, groups=NULL, xlab=NULL, ylab=NULL) {
+plot_cor <- function(x, y, groups=NULL, xlab=NULL, ylab=NULL, legend.pos = "top") {
 
   pval <- paste(sprintf("Correlation = %.3f\nP", Hmisc::rcorr(x, y)$r[2,1]),
              ifelse(Hmisc::rcorr(x, y)$P[2,1]==0, "< 1e-22",  paste0("= ", signif(Hmisc::rcorr(x, y)$P[2,1], 3)) ))
@@ -53,7 +53,7 @@ plot_cor <- function(x, y, groups=NULL, xlab=NULL, ylab=NULL) {
 
   p <-   ggplot(df.plot, aes(x=a, y=b)) +
     geom_smooth(method='lm',formula=y~x, se=F, linetype = "dashed", colour="grey50") +
-    theme(legend.title = element_blank(), legend.position = "none") +
+    theme(legend.title = element_blank(), legend.position = legend.pos) +
     annotate("text", x = Inf, y = Inf, hjust = 1, vjust = 1, label = pval) + labs(x=xlab, y=ylab)
 
   if(!is.null(groups)) {
