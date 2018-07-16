@@ -4,7 +4,8 @@
 \alias{plot_cor}
 \title{Plot correlation}
 \usage{
-plot_cor(x, y, groups = NULL)
+plot_cor(x, y, groups = NULL, xlab = NULL, ylab = NULL,
+  legend.pos = "top")
 }
 \value{
 a ggplot2 object of the plot

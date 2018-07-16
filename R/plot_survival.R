@@ -86,6 +86,7 @@ plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = 
                              legend.labs = legend.labs, risk.table = risk.table, risk.table.title = element_blank(),
                              risk.table.y.text = FALSE, ggtheme = theme(text = element_text(family = font),
                                                                         title = element_text(family = font),
+                                                                        axis.text.x = element_text(family = font),
                                                                         legend.title = element_blank()))
   p$plot <- p$plot + ggtitle(title)
 
@@ -120,7 +121,8 @@ plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = 
 
   if (risk.table) {
     p$table <- p$table + theme(text = element_text(family = font),
-                                title = element_text(family = font),
+                               title = element_text(family = font),
+                               axis.text = element_text(family = font),
                                axis.title.y = element_blank())
     pp <- plot_grid(plotlist = list(p$plot + theme(axis.title.x = element_blank()),
                                     p$table + labs(x = xlab)), labels = "", ncol = 1,

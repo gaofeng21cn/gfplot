@@ -5,6 +5,7 @@ test_that("multiplication works", {
 })
 
 test_that("test plot KM works", {
+  library(gfplot)
   library(survival)
   library(survminer)
   extrafont::loadfonts()
