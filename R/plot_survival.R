@@ -8,10 +8,14 @@
 #' @param annot a character indicating the annotation showed up in the plot
 #' @param color a vector containing colors used for different subtypes
 #' @param font a character indicating the font used in the plot (default: "Arial")
-#' @param xlab a character indicating the label of x-axis (default: "Follow up (weeks)")
-#' @param ylab a character indicating the label of y-axis (default: "DFS (prob.)")
+#' @param xlab a character indicating the label of x-axis (default: "Follow up")
+#' @param ylab a character indicating the label of y-axis (default: "Survival Probability")
+#' @param title a character indicating the title (default: NULL)
 #' @param lenged.pos a character indicating whether the legend is (default: "top")
-#' @param risk.table a logical indicating whether show risk table or not (default: FALSE)
+#' @param risk.table a logical indicating whether show risk table or not (default: TRUE)
+#' @param palette color paletter (default: "jama_classic")
+#' @param anno.pos position of annotation (default: "bottom")
+#' @param anno.x.shift relative position of annotation in x-axis (default: 0.5)
 #' @return a ggplot2 object of the plot
 #' @import ggplot2 cowplot
 #' @export
@@ -27,7 +31,7 @@
 
 plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = NULL,
                           font = "Arial", xlab = "Follow up", ylab = "Survival Probability",
-                          title = NULL, legend.pos = "top", risk.table = T, palette = "nature",
+                          title = NULL, legend.pos = "top", risk.table = T, palette = "jama_classic",
                           anno.pos = "bottom", anno.x.shift=0.5)
 {
   time <- clinical[, 1]

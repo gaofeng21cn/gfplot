@@ -12,5 +12,5 @@ test_that("test plot KM works", {
   data(myeloma)
   clin <- Surv(myeloma$time, myeloma$event)
   labs <- factor(myeloma$molecular_group)
-  plot_KMCurve(clin, labs)
+  plot_KMCurve(clin, labs, palette = "jama_classic")
 })
