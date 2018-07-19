@@ -67,4 +67,16 @@ plot_cor <- function(x, y, groups=NULL, xlab=NULL, ylab=NULL, legend.pos = "top"
   p
 }
 
+#' @export
+#' @import ggfortify
+plot_PCA <- function(data, labs, title="Evaluate the batch effect between groups") {
+  library(ggfortify)
+
+  df <- data.frame(group=labs, data, check.names = T)
+
+  autoplot(prcomp(df[, -1]), data=df, colour="group") +
+    theme(legend.title=element_blank()) +
+    scale_color_brewer(palette = "Set1") +
+    ggtitle(title)
+}
 

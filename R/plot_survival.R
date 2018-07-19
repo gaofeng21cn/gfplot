@@ -49,18 +49,7 @@ plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = 
     }
   }
   else {
-    color <- "Set1"
-    if (palette == "nature")
-      color <- (ggsci::pal_npg("nrc"))(length(unique(labels)))
-    if (palette == "lancet")
-      color <- (ggsci::pal_lancet("lanonc"))(length(unique(labels)))
-    if (palette == "jco")
-      color <- (ggsci::pal_jco("default"))(length(unique(labels)))
-    if (palette == "jama")
-      color <- c("#164870", "#10B4F3", "#FAA935", "#2D292A",
-                 "#87AAB9", "#CAC27E", "#818282")[1:length(unique(labels))]
-    if (palette == "jama_raju")
-      color <- c("#3676BB", "#DDBB1B", "#858585", "#606060")[1:length(unique(labels))]
+    color <- get_color(palette, n = length(unique(labels)))
   }
   if (class(labels) == "factor") {
     legend.labs <- na.omit(levels(droplevels(labels[!(is.na(time) |
