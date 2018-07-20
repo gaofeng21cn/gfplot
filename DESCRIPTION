@@ -12,8 +12,8 @@ Imports: ggplot2, ggsci, ggfortify, scales, dplyr, Hmisc, RColorBrewer
 Depends:
     cowplot
 Remotes: 
-  bioc::release/fgsea
-  bioc::release/survcomp
+  bioc::fgsea,
+  bioc::survcomp
 Suggests: 
     testthat
 RoxygenNote: 6.0.1
