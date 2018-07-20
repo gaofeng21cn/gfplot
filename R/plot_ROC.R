@@ -4,7 +4,7 @@ plot_ROC <-  function(scores, labels, fontsize=18, palette = "nature")
 {
   sscurves <- precrec::evalmod(scores = scores, labels = labels)
   roc <- precrec::auc(sscurves)[1, 4]
-  if (auc(sscurves)$aucs[1] < 0.5) {
+  if (precrec::auc(sscurves)$aucs[1] < 0.5) {
     sscurves <- precrec::evalmod(scores = -scores, labels = labels)
     roc <- precrec::auc(sscurves)[1, 4]
   }
