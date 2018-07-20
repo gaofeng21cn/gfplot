@@ -25,6 +25,4 @@ test_that("test plot ROC works", {
   plot_ROC(myeloma$CCND1, myeloma$event)
 
   plot_ROC(myeloma[, 7:10], myeloma$event)
-
-  plot_multiROC(myeloma[, 7:10], myeloma$event)
 })
