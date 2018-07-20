@@ -6,8 +6,8 @@
 \usage{
 plot_KMCurve(clinical, labels, limit = NULL, annot = NULL, color = NULL,
   font = "Arial", xlab = "Follow up", ylab = "Survival Probability",
-  title = NULL, legend.pos = "top", risk.table = T, palette = "nature",
-  anno.pos = "bottom", anno.x.shift = 0.5)
+  title = NULL, legend.pos = "top", risk.table = T,
+  palette = "jama_classic", anno.pos = "bottom", anno.x.shift = 0.5)
 }
 \arguments{
 \item{clinical}{a survival object created by Surv function in survival package}
@@ -22,11 +22,19 @@ plot_KMCurve(clinical, labels, limit = NULL, annot = NULL, color = NULL,
 
 \item{font}{a character indicating the font used in the plot (default: "Arial")}
 
-\item{xlab}{a character indicating the label of x-axis (default: "Follow up (weeks)")}
+\item{xlab}{a character indicating the label of x-axis (default: "Follow up")}
 
-\item{ylab}{a character indicating the label of y-axis (default: "DFS (prob.)")}
+\item{ylab}{a character indicating the label of y-axis (default: "Survival Probability")}
 
-\item{risk.table}{a logical indicating whether show risk table or not (default: FALSE)}
+\item{title}{a character indicating the title (default: NULL)}
+
+\item{risk.table}{a logical indicating whether show risk table or not (default: TRUE)}
+
+\item{palette}{color paletter (default: "jama_classic")}
+
+\item{anno.pos}{position of annotation (default: "bottom")}
+
+\item{anno.x.shift}{relative position of annotation in x-axis (default: 0.5)}
 
 \item{lenged.pos}{a character indicating whether the legend is (default: "top")}
 }
