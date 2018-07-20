@@ -14,3 +14,17 @@ test_that("test plot KM works", {
   labs <- factor(myeloma$molecular_group)
   plot_KMCurve(clin, labs, palette = "jama_classic")
 })
+
+
+test_that("test plot ROC works", {
+  library(gfplot)
+  library(survminer)
+  data(myeloma)
+  extrafont::loadfonts()
+
+  plot_ROC(myeloma$CCND1, myeloma$event)
+
+  plot_ROC(myeloma[, 7:10], myeloma$event)
+
+  plot_multiROC(myeloma[, 7:10], myeloma$event)
+})
