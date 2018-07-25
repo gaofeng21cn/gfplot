@@ -1,6 +1,7 @@
 #' @export
 #'
 get_color <- function(palette, n = 6) {
+  if(length(palette) > 1) return(palette)
 
   switch(tolower(palette), nature = {
     (ggsci::pal_npg("nrc"))(n)

@@ -12,8 +12,9 @@
 #' @param ylab a character indicating the label of y-axis (default: "Survival Probability")
 #' @param title a character indicating the title (default: NULL)
 #' @param lenged.pos a character indicating whether the legend is (default: "top")
-#' @param risk.table a logical indicating whether show risk table or not (default: TRUE)
 #' @param palette color paletter (default: "jama_classic")
+#' @param risk.table a logical indicating whether show risk table or not (default: TRUE)
+#' @param risk.table.ratio a numeric indicating the relative size of risk table (default: 0.4)
 #' @param anno.pos position of annotation (default: "bottom")
 #' @param anno.x.shift relative position of annotation in x-axis (default: 0.5)
 #' @return a ggplot2 object of the plot
@@ -31,7 +32,7 @@
 
 plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = NULL,
                           font = "Arial", xlab = "Follow up", ylab = "Survival Probability",
-                          title = NULL, legend.pos = "top", risk.table = T, palette = "jama_classic",
+                          title = NULL, legend.pos = "top", palette = "jama_classic", risk.table = T, risk.table.ratio=0.4,
                           anno.pos = "bottom", anno.x.shift=0.5)
 {
   time <- clinical[, 1]
@@ -119,7 +120,7 @@ plot_KMCurve <- function (clinical, labels, limit = NULL, annot = NULL, color = 
                                axis.title.y = element_blank())
     pp <- plot_grid(plotlist = list(p$plot + theme(axis.title.x = element_blank()),
                                     p$table + labs(x = xlab)), labels = "", ncol = 1,
-                    align = "v", rel_heights = c(2.5, 1))
+                    align = "v", rel_heights = c(1, risk.table.ratio))
     return(pp)
   }
   else return(p$plot)

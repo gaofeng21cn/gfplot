@@ -6,8 +6,9 @@
 \usage{
 plot_KMCurve(clinical, labels, limit = NULL, annot = NULL, color = NULL,
   font = "Arial", xlab = "Follow up", ylab = "Survival Probability",
-  title = NULL, legend.pos = "top", risk.table = T,
-  palette = "jama_classic", anno.pos = "bottom", anno.x.shift = 0.5)
+  title = NULL, legend.pos = "top", palette = "jama_classic",
+  risk.table = T, risk.table.ratio = 0.4, anno.pos = "bottom",
+  anno.x.shift = 0.5)
 }
 \arguments{
 \item{clinical}{a survival object created by Surv function in survival package}
@@ -28,9 +29,11 @@ plot_KMCurve(clinical, labels, limit = NULL, annot = NULL, color = NULL,
 
 \item{title}{a character indicating the title (default: NULL)}
 
+\item{palette}{color paletter (default: "jama_classic")}
+
 \item{risk.table}{a logical indicating whether show risk table or not (default: TRUE)}
 
-\item{palette}{color paletter (default: "jama_classic")}
+\item{risk.table.ratio}{a numeric indicating the relative size of risk table (default: 0.4)}
 
 \item{anno.pos}{position of annotation (default: "bottom")}
 
