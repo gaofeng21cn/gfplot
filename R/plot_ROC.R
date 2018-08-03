@@ -12,7 +12,7 @@
 #' plot_ROC(myeloma$CCND1, myeloma$event)
 #' plot_ROC(myeloma[, 7:10], myeloma$event)
 #'
-plot_ROC <- function(scores, labels, force05 = T, palette="jama", legend.pos=c(0.4,0.2), title = NULL, font="Arial", percent.style=F) {
+plot_ROC <- function(scores, labels, force05 = F, palette="jama", legend.pos=c(0.4,0.2), title = NULL, font="Arial", percent.style=F) {
   msmdat1 <- precrec::mmdata(scores, labels, modnames = colnames(scores))
   mmcurves <- precrec::evalmod(msmdat1)
 
