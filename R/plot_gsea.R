@@ -44,14 +44,26 @@ viewGSEA <- function(object, gscName, gsName, title="") {
 
   p.value <-  rr[rr$Gene.Set.Term == gsName, "Adjusted.Pvalue"]
 
-  p.res <- p.res + annotate("text",  x = Inf, y = Inf,
-                            label = paste("ES:", signif(enrichmentScore, 3)),
-                            hjust = 1.5, vjust = 2) +
-    annotate("text",  x = Inf, y = Inf,
-             label = ifelse(p.value == 0,
-                            "italic(P)<1%*%10^{-22}",
-                            paste0("italic(P)==", fancy_scientific(p.value, 3))),
-             hjust = 1, vjust = 3, parse = TRUE)
+  if(enrichmentScore > 0) {
+    p.res <- p.res + annotate("text",  x = Inf, y = Inf,
+                              label = paste("ES:", signif(enrichmentScore, 3)),
+                              hjust = 1.5, vjust = 2) +
+      annotate("text",  x = Inf, y = Inf,
+               label = ifelse(p.value == 0,
+                              "italic(P)<1%*%10^{-4}",
+                              paste0("italic(P)==", fancy_scientific(p.value, 3))),
+               hjust = 1, vjust = 3, parse = TRUE)
+  } else {
+    p.res <- p.res + annotate("text",  x = 0, y = enrichmentScore,
+                              label = paste("ES:", signif(enrichmentScore, 3)),
+                              hjust = 0, vjust = -1) +
+      annotate("text",  x = 0, y = enrichmentScore,
+               label = ifelse(p.value == 0,
+                              "italic(P)<1%*%10^{-4}",
+                              paste0("italic(P)==", fancy_scientific(p.value, 3))),
+               hjust = 0, vjust = -2, parse = TRUE)
+  }
+
   # }
   # if (by == "preranked" || by == "all") {
   #   df2 <- data.frame(x = which(p$data$position == 1))
