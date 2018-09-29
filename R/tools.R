@@ -17,3 +17,16 @@ get_color <- function(palette, n = 6) {
   RColorBrewer::brewer.pal(n, "Set1")
   )
 }
+
+#' @export
+generate_time_event <- function(clinical, limits, labels = NULL) {
+  time <- clinical[, 1]
+  event <- clinical[, 2] == 1
+  df <- sapply(limits, function(limit) {
+    res <- event
+    res[time > limit] <- F
+    res
+  })
+  colnames(df) <- labels
+  df
+}

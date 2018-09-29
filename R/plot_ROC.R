@@ -54,3 +54,35 @@ plot_ROC <- function(scores, labels, force05 = F, palette="jama", legend.pos=c(0
 
   p
 }
+
+#' @export
+#'
+plot_TimeROC <- function(scores, survival, time_points, groups,
+                         palette="jama", legend.pos=c(0.4,0.15), title = NULL, font="Arial", percent.style=F) {
+
+  df.plot <- do.call(rbind, lapply(1:length(time_points), function(i) {
+    p <- survivalROC(Stime = survival[, 1], status = survival[, 2], marker = scores, predict.time = time_points[i], method="KM")
+    df <- data.frame(FP=p$FP, TP=p$TP, group=groups[i])
+    df
+  }))
+
+  aucs <- do.call(c, lapply(1:length(time_points), function(i) {
+    p <- survivalROC(Stime = survival[, 1], status = survival[, 2], marker = scores, predict.time = time_points[i], method="KM")
+    p$AUC
+  }))
+
+  annot <- paste(groups, "AUC", round(aucs,3))
+
+  p <- ggplot() + geom_line(data=df.plot, aes(FP, TP, color=group)) +
+    labs(x="False Positive", y="True Positivie", title=title) + coord_equal() +
+    cowplot::theme_cowplot(font_family = "Arial", line_size = 1) +
+    theme(legend.position = legend.pos,
+          legend.title = element_blank()) +
+    scale_color_manual(labels = annot, values = get_color(palette, length(annot))) +
+    geom_abline(intercept=0, slope = 1, color="grey50", linetype="dashed")
+
+  if(percent.style) p <- p +
+    scale_y_continuous(labels=percent) + scale_x_continuous(labels=percent)
+
+  p
+}
