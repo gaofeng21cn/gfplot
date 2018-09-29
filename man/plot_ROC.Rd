@@ -4,8 +4,9 @@
 \alias{plot_ROC}
 \title{Plot ROC curve}
 \usage{
-plot_ROC(scores, labels, palette = "jama", legend.pos = c(0.4, 0.2),
-  title = NULL, font = "Arial", percent.style = F)
+plot_ROC(scores, labels, force05 = F, palette = "jama",
+  legend.pos = c(0.4, 0.2), title = NULL, font = "Arial",
+  percent.style = F)
 }
 \value{
 a ggplot2 object of the plot

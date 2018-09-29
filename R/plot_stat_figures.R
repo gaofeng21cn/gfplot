@@ -83,13 +83,18 @@ plot_PCA <- function(data, labs, title="Evaluate the batch effect between groups
 
 #' @export
 #' @import ggplot2 cowplot
-plot_RiskScore <- function(rs, event, legend.position = c(0.2, 0.8), palette = "nature") {
+plot_RiskScore <- function(rs, event, legend.position = c(0.2, 0.8), palette = "nature", color=NULL) {
   if(is.logical(event)) event <- factor(event, levels = c(T, F), labels = c("Dead/Recurrence", "Disease free"))
 
   if(is.null(names(rs))) names(rs) <- 1:length(rs)
   df <- data.frame(pt=names(rs), rs=rs, event=event)
   df <- df %>% arrange(rs)
   df$pt <- factor(df$pt, levels = as.character(df$pt))
+
+  if (!is.null(color)) {
+    color <- get_color(palette, length(levels(event)))
+  }
+
 
   p <- ggplot(df, aes(pt, rs, fill=event)) + geom_bar(stat="identity", alpha=0.7) +
     cowplot::theme_cowplot(font_family = "Arial") +
@@ -100,7 +105,8 @@ plot_RiskScore <- function(rs, event, legend.position = c(0.2, 0.8), palette = "
           axis.ticks.x = element_blank(),
           legend.title = element_blank(),
           legend.position = legend.position, legend.key.width = unit(1, "cm")) +
-    scale_fill_manual(labels = levels(event), values = get_color(palette, length(levels(event))))
+    scale_fill_manual(labels = levels(event), values = color)
+  p
 
 }
 
@@ -111,4 +117,5 @@ plot_Boxplot <- function(value, label, palette = "nature") {
     cowplot::theme_cowplot(font_family = "Arial") +
     theme(legend.position = "none", axis.title = element_blank()) +
     scale_color_manual(labels = label, values = get_color(palette, length(label)))
+  p
 }

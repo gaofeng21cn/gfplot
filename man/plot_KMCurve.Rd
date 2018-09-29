@@ -4,11 +4,11 @@
 \alias{plot_KMCurve}
 \title{Plot Kaplan-Meier Curve}
 \usage{
-plot_KMCurve(clinical, labels, limit = NULL, annot = NULL, color = NULL,
-  font = "Arial", xlab = "Follow up", ylab = "Survival Probability",
-  title = NULL, legend.pos = "top", palette = "jama_classic",
-  risk.table = T, risk.table.ratio = 0.4, anno.pos = "bottom",
-  anno.x.shift = 0.5)
+plot_KMCurve(clinical, labels, limit = NULL, annot = NULL,
+  color = NULL, font = "Arial", xlab = "Follow up",
+  ylab = "Survival Probability", title = NULL, legend.pos = "top",
+  palette = "jama_classic", risk.table = T, risk.table.ratio = 0.4,
+  anno.pos = "bottom", anno.x.shift = 0.5)
 }
 \arguments{
 \item{clinical}{a survival object created by Surv function in survival package}
