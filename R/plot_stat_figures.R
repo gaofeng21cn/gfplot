@@ -91,7 +91,7 @@ plot_RiskScore <- function(rs, event, legend.position = c(0.2, 0.8), palette = "
   df <- df %>% arrange(rs)
   df$pt <- factor(df$pt, levels = as.character(df$pt))
 
-  if (!is.null(color)) {
+  if (is.null(color)) {
     color <- get_color(palette, length(levels(event)))
   }
 
