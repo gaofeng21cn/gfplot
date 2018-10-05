@@ -71,7 +71,7 @@ plot_TimeROC <- function(scores, survival, time_points, groups,
     p$AUC
   }))
 
-  annot <- paste(groups, "AUC", round(aucs,3))
+  annot <- paste(groups, "AUC", sprintf("%.3f", aucs))
 
   p <- ggplot() + geom_line(data=df.plot, aes(FP, TP, color=group)) +
     labs(x="False Positive", y="True Positivie", title=title) + coord_equal() +
