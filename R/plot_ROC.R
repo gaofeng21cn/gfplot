@@ -75,7 +75,7 @@ plot_TimeROC <- function(scores, survival, time_points, groups,
 
   p <- ggplot() + geom_line(data=df.plot, aes(FP, TP, color=group)) +
     labs(x="False Positive", y="True Positivie", title=title) + coord_equal() +
-    cowplot::theme_cowplot(font_family = "Arial", line_size = 1) +
+    cowplot::theme_cowplot(font_family = "Arial") +
     theme(legend.position = legend.pos,
           legend.title = element_blank()) +
     scale_color_manual(labels = annot, values = get_color(palette, length(annot))) +
