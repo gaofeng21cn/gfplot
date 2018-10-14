@@ -86,3 +86,34 @@ plot_TimeROC <- function(scores, survival, time_points, groups,
 
   p
 }
+
+#' @export
+#'
+plot_MulROC <- function (scores, labels,  palette = "jama",
+                         legend.pos = c(0.35, 0.15), title = NULL, font = "Arial",
+                         percent.style = F)
+{
+  df.plot <- do.call(rbind, lapply(1:ncol(scores), function(i) {
+    x <- scores[, i]
+    roc2 <- pROC::roc(labels, x)
+    df <- data.frame(FP = 1-roc2$specificities, TP = roc2$sensitivities, group = colnames(scores)[i])
+    df
+  }))
+
+  aucs <- t(sapply(scores, function(x) {
+    roc2 <- pROC::roc(labels, x)
+    auc <- pROC::ci(roc2)[c(2, 1, 3)]
+  }))
+  annot <- paste0(stringr::str_pad(colnames(scores), 10, "right"), "\t", sprintf("AUC %.3f", aucs[, 1]))
+
+  p <- ggplot() + geom_path(data = df.plot, aes(FP, TP, color = group)) +
+    labs(x = "False Positive", y = "True Positivie", title = title) +
+    coord_equal() + cowplot::theme_cowplot(font_family = "Arial") +
+    theme(legend.position = legend.pos, legend.title = element_blank()) +
+    scale_color_manual(labels = annot, values = get_color(palette,
+                                                          length(annot))) + geom_abline(intercept = 0, slope = 1,
+                                                                                        color = "grey50", linetype = "dashed")
+  if (percent.style)
+    p <- p + scale_y_continuous(labels = percent) + scale_x_continuous(labels = percent)
+  p
+}

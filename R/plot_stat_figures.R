@@ -116,6 +116,6 @@ plot_Boxplot <- function(value, label, palette = "nature") {
   p <- qplot(x= label, y= value, geom= "boxplot", color= label) +
     cowplot::theme_cowplot(font_family = "Arial") +
     theme(legend.position = "none", axis.title = element_blank()) +
-    scale_color_manual(labels = label, values = get_color(palette, length(label)))
+    scale_color_manual(labels = label, values = get_color(palette, length(levels(label))))
   p
 }
