@@ -76,7 +76,8 @@ plot_TimeROC <- function(scores, survival, time_points, groups,
   p <- ggplot() + geom_line(data=df.plot, aes(FP, TP, color=group)) +
     labs(x="False Positive", y="True Positivie", title=title) + coord_equal() +
     cowplot::theme_cowplot(font_family = "Arial") +
-    theme(legend.position = legend.pos,
+    theme(plot.title = element_text(hjust = 0.5),
+          legend.position = legend.pos,
           legend.title = element_blank()) +
     scale_color_manual(labels = annot, values = get_color(palette, length(annot))) +
     geom_abline(intercept=0, slope = 1, color="grey50", linetype="dashed")
@@ -109,7 +110,9 @@ plot_MulROC <- function (scores, labels,  palette = "jama",
   p <- ggplot() + geom_path(data = df.plot, aes(FP, TP, color = group)) +
     labs(x = "False Positive", y = "True Positivie", title = title) +
     coord_equal() + cowplot::theme_cowplot(font_family = "Arial") +
-    theme(legend.position = legend.pos, legend.title = element_blank()) +
+    theme(plot.title = element_text(hjust = 0.5),
+          legend.position = legend.pos,
+          legend.title = element_blank()) +
     scale_color_manual(labels = annot, values = get_color(palette,
                                                           length(annot))) + geom_abline(intercept = 0, slope = 1,
                                                                                         color = "grey50", linetype = "dashed")
