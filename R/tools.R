@@ -30,3 +30,8 @@ generate_time_event <- function(clinical, limits, labels = NULL) {
   colnames(df) <- labels
   df
 }
+
+
+.onLoad <- function(libname, pkgname) {
+  ggplot2::theme_set(cowplot::theme_cowplot())
+}
