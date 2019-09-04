@@ -53,7 +53,9 @@ plot_cor <- function(x, y, groups=NULL, xlab=NULL, ylab=NULL, legend.pos = "top"
 
   p <-   ggplot(df.plot, aes(x=a, y=b)) +
     geom_smooth(method='lm',formula=y~x, se=F, linetype = "dashed", colour="grey50") +
-    theme(legend.title = element_blank(), legend.position = legend.pos) +
+    theme(plot.title = element_text(hjust = 0.5),
+          legend.title = element_blank(),
+          legend.position = legend.pos) +
     annotate("text", x = Inf, y = Inf, hjust = 1, vjust = 1, label = pval) + labs(x=xlab, y=ylab)
 
   if(!is.null(groups)) {
@@ -99,7 +101,8 @@ plot_RiskScore <- function(rs, event, legend.position = c(0.2, 0.8), palette = "
   p <- ggplot(df, aes(pt, rs, fill=event)) + geom_bar(stat="identity", alpha=0.7) +
     cowplot::theme_cowplot(font_family = "Arial") +
     ylab("Risk score") +
-    theme(axis.text.x=element_blank(),
+    theme(plot.title = element_text(hjust = 0.5),
+          axis.text.x=element_blank(),
           axis.title.x = element_blank(),
           axis.line.x = element_blank(),
           axis.ticks.x = element_blank(),
