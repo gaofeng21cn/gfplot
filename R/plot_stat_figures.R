@@ -1,3 +1,4 @@
+#' @export
 plot_barplot <- function() {
 
   library(scales)
@@ -85,7 +86,7 @@ plot_PCA <- function(data, labs, title="Evaluate the batch effect between groups
 
 #' @export
 #' @import ggplot2 cowplot
-plot_RiskScore <- function(rs, event, legend.position = c(0.2, 0.8), palette = "nature", color=NULL) {
+plot_RiskScore <- function(rs, event, legend.position = c(0.2, 0.8), palette = "jama", color=NULL) {
   if(is.logical(event)) event <- factor(event, levels = c(T, F), labels = c("Dead/Recurrence", "Disease free"))
 
   if(is.null(names(rs))) names(rs) <- 1:length(rs)

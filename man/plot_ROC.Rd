@@ -5,7 +5,7 @@
 \title{Plot ROC curve}
 \usage{
 plot_ROC(scores, labels, force05 = F, palette = "jama",
-  legend.pos = c(0.4, 0.2), title = NULL, font = "Arial",
+  legend.pos = c(0.2, 0.15), title = NULL, font = "Arial",
   percent.style = F)
 }
 \value{
