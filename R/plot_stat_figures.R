@@ -74,12 +74,11 @@ plot_cor <- function(x, y, groups=NULL, xlab=NULL, ylab=NULL, legend.pos = "top"
 #' @import ggfortify
 plot_PCA <- function(data, labs, title="Evaluate the batch effect between groups", palette = "nature") {
   library(ggfortify)
-
-  df <- data.frame(group=labs, data, check.names = T)
-
-  autoplot(prcomp(df[, -1]), data=df, colour="group") +
-    theme(legend.title=element_blank()) +
-    scale_fill_manual(labels = levels(factor(labs)), values = get_color(palette, length(levels(factor(labs))))) +
+  df <- data.frame(group = labs, data, check.names = F)
+  autoplot(prcomp(df[, -1]), data = df, colour = "group") +
+    theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5)) +
+    scale_fill_manual(labels = levels(factor(labs)),
+                      values = get_color(palette, length(levels(factor(labs))))) +
     ggtitle(title)
 }
 
@@ -116,10 +115,18 @@ plot_RiskScore <- function(rs, event, legend.position = c(0.2, 0.8), palette = "
 
 #' @export
 #' @import ggplot2 cowplot
-plot_Boxplot <- function(value, label, palette = "nature") {
-  p <- qplot(x= label, y= value, geom= "boxplot", color= label) +
+plot_Boxplot <- function (value, label, palette = "nature", title=NULL, ylab="Expression")
+{
+
+  p <- qplot(x = label, y = value, geom = "boxplot", color = label) +
     cowplot::theme_cowplot(font_family = "Arial") +
-    theme(legend.position = "none", axis.title = element_blank()) +
-    scale_color_manual(labels = label, values = get_color(palette, length(levels(label))))
+    scale_y_continuous(limits = c(min(value, na.rm = T), max(value, na.rm = T)+1)) +
+    # geom_point(position = "jitter", shape=3) +
+    theme(legend.position = "none", plot.title = element_text(hjust = 0.5)) +
+    scale_color_manual(labels = levels(label),  values = get_color(palette, length(levels(label)))) +
+    labs(x = NULL, y = ylab, title = title) +
+    geom_signif(comparisons=list(levels(label)), test = "wilcox.test")
+
   p
 }
+
