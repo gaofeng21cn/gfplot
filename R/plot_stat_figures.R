@@ -77,7 +77,7 @@ plot_PCA <- function(data, labs, title="Evaluate the batch effect between groups
   df <- data.frame(group = labs, data, check.names = F)
   autoplot(prcomp(df[, -1]), data = df, colour = "group") +
     theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5)) +
-    scale_fill_manual(labels = levels(factor(labs)),
+    scale_color_manual(labels = levels(factor(labs)),
                       values = get_color(palette, length(levels(factor(labs))))) +
     ggtitle(title)
 }
@@ -90,7 +90,7 @@ plot_UMAP <- function(data, labs, title="Evaluate the batch effect between group
 
   ggplot(df_plot, aes(UMAP1, UMAP2, color = Group)) + geom_point() +
     theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5)) +
-    scale_fill_manual(labels = levels(factor(labs)),
+    scale_color_manual(labels = levels(factor(labs)),
                       values = get_color(palette, length(levels(factor(labs))))) +
     ggtitle(title)
 }
