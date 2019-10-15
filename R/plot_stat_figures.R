@@ -83,15 +83,14 @@ plot_PCA <- function(data, labs, title="Evaluate the batch effect between groups
 }
 
 #' @export
-#' @import umapr
 plot_UMAP <- function(data, labs, title="Evaluate the batch effect between groups", palette = "nature") {
-  df <- umapr::umap(data)
-  df_plot <- data.frame(Group = labs, UMAP1=df$UMAP1, UMAP2=df$UMAP2, check.names = F)
+  df <- umap::umap(data)
+  df_plot <- data.frame(Group = labs, UMAP1=df$layout[, 1], UMAP2=df$layout[, 2], check.names = F)
 
   ggplot(df_plot, aes(UMAP1, UMAP2, color = Group)) + geom_point() +
     theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5)) +
     scale_color_manual(labels = levels(factor(labs)),
-                      values = get_color(palette, length(levels(factor(labs))))) +
+                       values = get_color(palette, length(levels(factor(labs))))) +
     ggtitle(title)
 }
 

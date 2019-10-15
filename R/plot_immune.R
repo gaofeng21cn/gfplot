@@ -1,5 +1,5 @@
 #' @export
-#' @import ggplot2 cowplot ggradar
+#' @import ggplot2 cowplot
 #'
 plot_immune <- function(res, group, title="", legend.position = "left") {
   df <- data.frame(res, check.names = F)

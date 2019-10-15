@@ -8,12 +8,13 @@ Description: Some useful function to generate publication ready level figures
 License: MIT
 Encoding: UTF-8
 LazyData: true
-Imports: ggplot2, ggsci, ggfortify, scales, dplyr, Hmisc, RColorBrewer, precrec
+Imports: ggplot2, ggsci, ggfortify, scales, dplyr, Hmisc, RColorBrewer, precrec, umap, reshape
 Depends:
     cowplot
 Remotes: 
   bioc::fgsea,
-  bioc::survcomp
+  bioc::survcomp,
+  github::ricardo-bion/ggradar
 Suggests: 
     testthat
 RoxygenNote: 6.1.1
