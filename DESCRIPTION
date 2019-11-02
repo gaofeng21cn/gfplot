@@ -8,12 +8,11 @@ Description: Some useful function to generate publication ready level figures
 License: MIT
 Encoding: UTF-8
 LazyData: true
-Imports: ggplot2, ggsci, ggfortify, scales, dplyr, Hmisc, RColorBrewer, precrec, umap, reshape
+biocViews:
+Imports: ggplot2, ggsci, ggfortify, scales, dplyr, Hmisc, RColorBrewer, precrec, umap, reshape, fgsea, survcomp
 Depends:
     cowplot
 Remotes: 
-  bioc::fgsea,
-  bioc::survcomp,
   github::ricardo-bion/ggradar
 Suggests: 
     testthat
