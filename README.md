@@ -1,6 +1,7 @@
 # gfplot
 
 ## Install
+Install with [devtools](https://github.com/r-lib/devtools).
 
 ```
 install.packages("devtools")
